@@ -1,5 +1,7 @@
 package com.xx.study.offer.arraysandmatrices;
 
+import java.util.HashSet;
+
 /**
  * @Author: XX
  * @Description: 3. 数组中重复的数字
@@ -17,7 +19,7 @@ public class Offer3 {
 
     public static void main(String[] args) {
         int[] testNums = {3, 0, 2, 1, 2};
-        System.out.println(duplicate(testNums));
+        System.out.println(duplicate3(testNums));
     }
 
     public static int duplicate(int[] nums) {
@@ -36,9 +38,76 @@ public class Offer3 {
         return -1;
     }
 
-    public static void swap(int[] nums, int i) {
-        int temp = nums[i];
-        nums[i] = nums[temp];
-        nums[temp] = temp;
+
+    /**
+     * 数组重排序思想
+     * @param numbers
+     * @return
+     */
+    public int duplicate1 (int[] numbers) {
+        // write code here
+        if (numbers == null || numbers.length == 0) {
+            return -1;
+        }
+        int length = numbers.length ;
+        int idx = 0;
+        while (idx<length){
+            if(numbers[idx]==idx){
+                idx ++;
+            }else {
+                if(numbers[idx]==numbers[numbers[idx]]){
+                    return numbers[idx];
+                }
+                swap(numbers,idx);
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 使用另外一个数组来记录出现次数
+     * @param numbers
+     * @return
+     */
+    public static int duplicate2 (int[] numbers) {
+        // write code here
+        if (numbers == null || numbers.length == 0) {
+            return -1;
+        }
+        int length = numbers.length ;
+        int[] calNums = new int[length];
+        for (int number : numbers) {
+            calNums[number]++;
+            if (calNums[number] == 2) {
+                return number;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 使用set、map contains-key 思想
+     * @param numbers
+     * @return
+     */
+    public static int duplicate3 (int[] numbers) {
+        // write code here
+        if (numbers == null || numbers.length == 0) {
+            return -1;
+        }
+        HashSet<Integer> set = new HashSet<>();
+        for (int number : numbers) {
+          if(set.contains(number)){
+              return number;
+          }
+          set.add(number);
+        }
+        return -1;
+    }
+
+    public static void swap(int[] numbers, int idx) {
+        int temp = numbers[numbers[idx]];
+        numbers[numbers[idx]] = numbers[idx];
+        numbers[idx] = temp;
     }
 }
