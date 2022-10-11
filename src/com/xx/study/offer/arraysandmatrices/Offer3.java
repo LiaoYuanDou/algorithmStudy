@@ -18,8 +18,11 @@ import java.util.HashSet;
 public class Offer3 {
 
     public static void main(String[] args) {
-        int[] testNums = {3, 0, 2, 1, 2};
-        System.out.println(duplicate3(testNums));
+        int[] testNumS = {2,3,1,0,2,5,3};
+        System.out.println(duplicate(testNumS));
+        System.out.println(duplicate1(testNumS));
+        System.out.println(duplicate2(testNumS));
+        System.out.println(duplicate3(testNumS));
     }
 
     public static int duplicate(int[] nums) {
@@ -44,7 +47,7 @@ public class Offer3 {
      * @param numbers
      * @return
      */
-    public int duplicate1 (int[] numbers) {
+    public static int duplicate1 (int[] numbers) {
         // write code here
         if (numbers == null || numbers.length == 0) {
             return -1;
