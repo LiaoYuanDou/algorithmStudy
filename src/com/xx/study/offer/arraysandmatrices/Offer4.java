@@ -26,6 +26,10 @@ public class Offer4 {
         int[][] testMatrix = {{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}, {18, 21, 23, 26, 30}};
         System.out.println(find(5, testMatrix));
         System.out.println(find(20, testMatrix));
+        System.out.println(find1(5, testMatrix));
+        System.out.println(find2(5, testMatrix));
+        System.out.println(find3(5, testMatrix));
+        System.out.println(find3(20, testMatrix));
     }
 
     public static boolean find(int target, int[][] matrix) {
@@ -43,6 +47,74 @@ public class Offer4 {
                 widthIdx--;
             } else {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 数组[0]是这行最小值 [length-1]是这行最大值。
+     * 所以快速解题思路就两种
+     * 一种是右下角开始小于的话增加row 大于减少col == 找到
+     * 一种是左上角开始小于的话增加col 大于减少row == 找到
+     *
+     * @param target 寻找key
+     * @param array  数组
+     * @return
+     */
+    public static boolean find1(int target, int[][] array) {
+        if (array == null || array.length == 0 || array[0].length == 0) {
+            return false;
+        }
+        int high = array.length - 1;
+        int width = array[0].length - 1;
+
+        int row = width;
+        int col = 0;
+        while (row >= 0 && col <= high) {
+            if (array[col][row] == target) {
+                return true;
+            } else if (array[col][row] > target) {
+                row--;
+            } else {
+                col++;
+            }
+        }
+        return false;
+    }
+
+    public static boolean find2(int target, int[][] array) {
+        if (array == null || array.length == 0 || array[0].length == 0) {
+            return false;
+        }
+        int high = array.length - 1;
+        int width = array[0].length - 1;
+
+        int row = 0;
+        int col = high;
+        while (row <= width && col >= 0) {
+            if (array[col][row] == target) {
+                return true;
+            } else if (array[col][row] > target) {
+                col--;
+            } else {
+                row++;
+            }
+        }
+        return false;
+    }
+
+    public static boolean find3(int target, int[][] array) {
+        if (array == null || array.length == 0 || array[0].length == 0) {
+            return false;
+        }
+        int high = array.length;
+        int width = array[0].length;
+        for (int col = 0; col < high; col++) {
+            for (int row = 0; row < width; row++) {
+                if (array[col][row] == target) {
+                    return true;
+                }
             }
         }
         return false;
