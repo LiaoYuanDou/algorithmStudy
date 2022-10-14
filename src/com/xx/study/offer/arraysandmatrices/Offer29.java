@@ -23,7 +23,10 @@ import java.util.List;
 public class Offer29 {
     public static void main(String[] args) {
         int[][] testMatrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
-        printMatrix(testMatrix).forEach(System.out::println);
+        System.out.println(printMatrix(testMatrix));
+        int[][] testMatrix1 = {{1, 2, 3, 4,5}};
+        System.out.println(printMatrix1(testMatrix1));
+        System.out.println(printMatrix2(testMatrix));
     }
 
     public static List<Integer> printMatrix(int[][] matrix) {
@@ -56,5 +59,89 @@ public class Offer29 {
             c2--;
         }
         return resultList;
+    }
+
+    public static ArrayList<Integer> printMatrix1(int [][] matrix) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        if (matrix == null || matrix.length == 0) {
+            return result;
+        }
+        int col1 = 0, col2 = matrix.length - 1;
+        int row1 = 0, row2 = matrix[0].length - 1;
+        while (col1 <= col2 && row1 <= row2) {
+            for (int row = row1; row <= row2; row++) {
+                result.add(matrix[col1][row]);
+            }
+            for (int col = col1 + 1; col <= col2; col++) {
+                result.add(matrix[col][row2]);
+            }
+            if (col1 != col2) {
+                for (int row = row2 - 1; row >= row1; row--) {
+                    result.add(matrix[col2][row]);
+                }
+            }
+            if (row1 != row2) {
+                for (int col = col2 - 1; col > col1; col--) {
+                    result.add(matrix[col][row1]);
+                }
+            }
+            row1++;
+            row2--;
+            col1++;
+            col2--;
+        }
+        return result;
+    }
+
+    /**
+     * step 1：首先排除特殊情况
+     * step 2：取矩阵四个边界值，顺时针螺旋循环矩阵，遍历的截止点左右边界或者上下边界重合
+     * step 3：首先对最上面一排从左到右进行遍历输出，到达最右边后第一排就输出完了，上边界相应就往下一行，要判断上下边界是否相遇相交。
+     * step 4：然后输出到了右边，正好就对最右边一列从上到下输出，到底后最右边一列已经输出完了，右边界就相应往左一列，要判断左右边界是否相遇相交。
+     * step 5：然后对最下面一排从右到左进行遍历输出，到达最左边后最下一排就输出完了，下边界相应就往上一行，要判断上下边界是否相遇相交。
+     * step 6：然后输出到了左边，正好就对最左边一列从下到上输出，到顶后最左边一列已经输出完了，左边界就相应往右一列，要判断左右边界是否相遇相交。
+     * step 7：重复上述3-6步骤直到循环结束。
+     * @param matrix 输入数组
+     * @return
+     */
+    public static ArrayList<Integer> printMatrix2(int [][] matrix) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        if (matrix == null || matrix.length == 0) {
+            return result;
+        }
+        int up = 0, down = matrix.length - 1;
+        int left = 0, right = matrix[0].length - 1;
+
+        while (left <= right && up <= down) {
+            for (int row = left; row <= right; row++) {
+                result.add(matrix[up][row]);
+            }
+            up++;
+            if (up > down) {
+                break;
+            }
+            for (int col = up; col <= down; col++) {
+                result.add(matrix[col][right]);
+            }
+            right--;
+            if (left > right) {
+                break;
+            }
+            for (int row = right; row >= left; row--) {
+                result.add(matrix[down][row]);
+            }
+            down--;
+            if (up > down) {
+                break;
+            }
+            for (int col = down; col >= up; col--) {
+                result.add(matrix[col][left]);
+            }
+            left++;
+            if (left > right) {
+                break;
+            }
+        }
+        return result;
     }
 }
