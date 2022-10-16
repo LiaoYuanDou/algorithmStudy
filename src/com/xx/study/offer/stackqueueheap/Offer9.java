@@ -23,10 +23,22 @@ public class Offer9 {
     Stack<Integer> in = new Stack<>();
     Stack<Integer> out = new Stack<>();
 
+    /**
+     * step 1：push操作就正常push到第一个栈末尾。
+     *
+     * @param node
+     */
     public void push(int node) {
         in.push(node);
     }
 
+    /**
+     * step 2：pop操作时， 判断第二个栈 是否为空 不为空 优先将第二个栈的元素弹出。
+     * step 3：为空 第一个栈的元素 弹出并依次加入第二个栈中
+     * step 4：判断第二个栈是否为空 为空  抛出 队列为空的异常 不为空 弹出第二个栈的第一个元素
+     *
+     * @return
+     */
     public Integer pop() {
         if (out.isEmpty()) {
             while (!in.isEmpty()) {
@@ -38,4 +50,34 @@ public class Offer9 {
         }
         return out.pop();
     }
+
+    /**
+     * step 1：先将第二个栈的剩余元素依次push到第一个栈。
+     * step 2：然后正常push到第一个栈末尾。
+     *
+     * @param node
+     */
+    public void push1(int node) {
+        while (!out.isEmpty()) {
+            in.push(out.pop());
+        }
+        in.push(node);
+    }
+
+    /**
+     * step 3：先将第一个栈的剩余元素依次push到第二个栈。
+     * step 4：然后第二个栈pop第一个元素。
+     *
+     * @return
+     */
+    public int pop2() {
+        while (!in.isEmpty()) {
+            out.push(in.pop());
+        }
+        if (out.isEmpty()) {
+            throw new RuntimeException("Queue is Empty");
+        }
+        return out.pop();
+    }
+
 }

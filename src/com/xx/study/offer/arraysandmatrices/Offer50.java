@@ -105,11 +105,10 @@ public class Offer50 {
             return -1;
         }
         char[] ch = str.toCharArray();
-        int length = ch.length;
-        Map<Character, Integer> map = new HashMap<>(length);
+        Map<Character, Integer> map = new HashMap<>(ch.length);
         Queue<Character> qc = new LinkedList<>();
         Queue<Integer> qi = new LinkedList<>();
-        for (int i = 0; i< length; i++) {
+        for (int i = 0; i< ch.length; i++) {
             char c = ch[i];
             if (map.containsKey(c)) {
                 map.put(c, -1);
