@@ -38,4 +38,23 @@ public class Offer30 {
     public int min() {
         return minStack.peek();
     }
+
+    /**
+     * step 1: 使用一个数据栈记录每次push的数据，进行正常的push pop top操作
+     * step 2: 使用一个最小栈记录每次push的最小数据
+     * step 3： 每次push数据的时候要与最小栈的栈顶元素比较，若是push元素小于最小栈的栈顶元素 就 push进入最小栈的栈顶
+     * 若是push元素大于最小栈的栈顶元素 就 重复push最小栈的栈顶元素 因为这次push还是这个元素最小
+     * step 4： pop的时候两个栈一起pop
+     *
+     * @param node
+     */
+    public void push1(int node) {
+        dataStack.push(node);
+        if (minStack.isEmpty() || minStack.peek() > node) {
+            minStack.push(node);
+        } else {
+            minStack.push(minStack.peek());
+        }
+    }
+
 }
