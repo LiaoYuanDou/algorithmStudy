@@ -1,5 +1,7 @@
 package com.xx.study.offer.stackqueueheap;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 /**
@@ -16,12 +18,23 @@ import java.util.PriorityQueue;
  * @Copyright: ©
  */
 public class Offer41 {
+    /**
+     * step 1：我们可以维护两个堆，分别是大顶堆min，用于存储较小的值，其中顶部最大；小顶堆max，用于存储较大的值，其中顶部最小，则中位数只会在两个堆的堆顶出现。
+     * step 2：我们可以约定奇数个元素时取大顶堆的顶部值，偶数个元素时取两堆顶的平均值，则可以发现两个堆的数据长度要么是相等的，要么奇数时大顶堆会多一个。
+     * step 3：每次输入的数据流先进入大顶堆排序，然后将小顶堆的最大值弹入大顶堆中，完成整个的排序。
+     * step 4：但是因为大顶堆的数据不可能会比小顶堆少一个，因此需要再比较二者的长度，若是小顶堆长度小于大顶堆，需要从大顶堆中弹出最小值到大顶堆中进行平衡。
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         for (int i = 20; i >= 0; i = i - 2) {
-            insert(i);
+            insert2(i);
+            insert3(i);
         }
-        System.out.println(N);
-        System.out.println(getMedian());
+        //System.out.println(N);
+        System.out.println(getMedian2());
+        System.out.println(getMedian3());
+
     }
 
     /* 大顶堆，存储左半边元素 */
@@ -51,6 +64,57 @@ public class Offer41 {
             return (left.peek() + right.peek()) / 2.0;
         } else {
             return Double.valueOf(right.peek());
+        }
+    }
+
+    public static void insert2(int val) {
+        left.offer(val);
+        right.offer(left.poll());
+        if (left.size() < right.size()) {
+            left.offer(right.poll());
+        }
+    }
+
+    public static Double getMedian2() {
+        if (left.size() == right.size()) {
+            return (left.peek() + right.peek()) / 2.0;
+        } else {
+            return Double.valueOf(left.peek());
+        }
+    }
+
+    /**
+     * step 1：用一数组存储输入的数据流。
+     * step 2：Insert函数在插入的同时，遍历之前存储在数组中的数据，按照递增顺序依次插入，如此一来，加入的数据流便是有序的。
+     * step 3：GetMedian函数可以根据下标直接访问中位数，分为数组为奇数个元素和偶数个元素两种情况。记得需要类型转换为double。
+     */
+
+    private static List<Integer> inputs = new ArrayList<>();
+
+    public static void insert3(Integer num) {
+        if (inputs.isEmpty()) {
+            inputs.add(num);
+        } else {
+            int i = 0 ;
+            for (; i < inputs.size(); i++) {
+                if (num <= inputs.get(i)) {
+                    break;
+                }
+            }
+            inputs.add(i, num);
+        }
+    }
+
+    public static Double getMedian3() {
+        int size = inputs.size();
+        int mid = size / 2;
+        if ((size & 1) == 0) {
+            int left = inputs.get(mid - 1);
+            int right = inputs.get(mid);
+            return (left + right) / 2.0;
+        } else {
+            return (double)inputs.get(mid);
+
         }
     }
 }

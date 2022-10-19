@@ -1,6 +1,7 @@
 package com.xx.study.offer.stackqueueheap;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -29,6 +30,7 @@ public class Offer40 {
         int[] testNums = {9, 7, 8, 5, 2, 1, 4, 6, 3};
         System.out.println(doGetLeastNumbersSolution(testNums, 5));
         System.out.println(doGetLeastNumbersSolution2(testNums, 5));
+        System.out.println(doGetLeastNumbersSolution3(testNums, 5));
     }
 
     /**
@@ -134,5 +136,43 @@ public class Offer40 {
         int t = nums[i];
         nums[i] = nums[j];
         nums[j] = t;
+    }
+
+    /**
+     * step 1: 用优先队列建立一个大顶堆
+     * step 2: 循环输入数组，如果大顶堆元素个数小于k 直接加入堆中
+     * 元素个数如果大于等于K 则需要判断大顶堆顶部元素大于循环中的元素 大于加入 大顶堆  同时要排除一个元素
+     * step 3:返回list
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
+    public static List<Integer> doGetLeastNumbersSolution3(int[] nums, int k) {
+        if (nums == null || nums.length == 0 || k == 0) {
+            return new ArrayList<>();
+        }
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((o1, o2) -> o2 -o1);
+        for (int num : nums) {
+            if (maxHeap.size() < k) {
+                maxHeap.offer(num);
+            } else if (maxHeap.peek() > num) {
+                maxHeap.offer(num);
+                maxHeap.poll();
+            }
+        }
+        return new ArrayList<Integer>(maxHeap);
+    }
+
+    public ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        if (input == null || input.length == 0 || k == 0) {
+            return res;
+        }
+        Arrays.sort(input);
+        for (int idx = 0 ; idx < k; idx++) {
+            res.add(input[idx]);
+        }
+        return res;
     }
 }
