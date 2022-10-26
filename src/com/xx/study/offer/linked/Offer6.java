@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
+ * https://github.com/CyC2018/CS-Notes/blob/master/notes/6.%20%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8.md
+ * <p>
+ * 从尾到头打印链表
+ * 从尾到头反过来打印出每个结点的值。
+ *
  * @Author XX
  * @Date 2022/10/23 21:20
  * @Version 1.0
@@ -83,13 +88,14 @@ public class Offer6 {
      * listNode 是链表，只能从头遍历到尾，但是输出却要求从尾到头，这是典型的"先进后出"，我们可以想到栈！
      * ArrayList 中有个方法是 add(index,value)，可以指定 index 位置插入 value 值
      * 所以我们在遍历 listNode 的同时将每个遇到的值插入到 list 的 0 位置，最后输出 listNode 即可得到逆序链表
+     *
      * @param listNode
      * @return
      */
     public static ArrayList<Integer> printListFromTailToHead4(ListNode listNode) {
-        ArrayList<Integer>  res = new ArrayList<Integer>();
-        while(listNode!=null){
-            res.add(0,listNode.val);
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        while (listNode != null) {
+            res.add(0, listNode.val);
             listNode = listNode.next;
         }
         return res;

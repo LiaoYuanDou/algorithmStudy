@@ -3,6 +3,10 @@ package com.xx.study.offer.linked;
 import static com.xx.study.offer.linked.ListNode.array2ListNode;
 
 /**
+ * https://github.com/CyC2018/CS-Notes/blob/master/notes/18.2%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E7%BB%93%E7%82%B9.md
+ * <p>
+ * 删除链表中重复的结点
+ *
  * @Author XX
  * @Date 2022/10/24 22:44
  * @Version 1.0
@@ -79,6 +83,7 @@ public class Offer76 {
 
     /**
      * 递归调用
+     *
      * @param pHead
      * @return
      */

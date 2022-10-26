@@ -3,6 +3,11 @@ package com.xx.study.offer.doublepointer;
 import java.util.ArrayList;
 
 /**
+ * https://github.com/CyC2018/CS-Notes/blob/master/notes/57.2%20%E5%92%8C%E4%B8%BA%20S%20%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%AD%A3%E6%95%B0%E5%BA%8F%E5%88%97.md
+ * <p>
+ * 和为 S 的连续正数序列
+ * 输出所有和为 S 的连续正数序列。例如和为 100 的连续序列有：
+ *
  * @Author XX
  * @Date 2022/10/21 11:06
  * @Version 1.0

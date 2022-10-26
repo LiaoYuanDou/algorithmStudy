@@ -1,6 +1,10 @@
 package com.xx.study.offer.linked;
 
 /**
+ * https://github.com/CyC2018/CS-Notes/blob/master/notes/18.1%20%E5%9C%A8%20O(1)%20%E6%97%B6%E9%97%B4%E5%86%85%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E8%8A%82%E7%82%B9.md
+ * <p>
+ * 删除链表节点
+ *
  * @Author XX
  * @Date 2022/10/23 22:30
  * @Version 1.0

@@ -1,6 +1,10 @@
 package com.xx.study.offer.doublepointer;
 
 /**
+ * https://github.com/CyC2018/CS-Notes/blob/master/notes/58.2%20%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.md
+ * 左旋转字符串
+ * 将字符串 S 从第 K 位置分隔成两个子字符串，并交换这两个子字符串的位置。
+ *
  * @Author XX
  * @Date 2022/10/23 20:33
  * @Version 1.0
