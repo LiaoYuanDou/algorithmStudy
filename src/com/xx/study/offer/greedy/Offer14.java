@@ -1,6 +1,10 @@
 package com.xx.study.offer.greedy;
 
 /**
+ * 剪绳子
+ * <p>
+ * https://github.com/CyC2018/CS-Notes/blob/master/notes/14.%20%E5%89%AA%E7%BB%B3%E5%AD%90.md
+ *
  * @Author XX
  * @Date 2022/11/8 14:24
  * @Version 1.0
@@ -30,11 +34,12 @@ public class Offer14 {
 
     /**
      * 动态规划
-     *
+     * <p>
      * step 1：检查当number不超过3的时候直接计算。
      * step 2：用dp数组表示长度为i的绳子可以被剪出来的最大乘积，初始化前面4个容易推断的。
      * step 3：遍历每个长度，对于每个长度的最大乘积，可以遍历从1到i的每个固定一段，按照上述公式求的最大值。
      * step 4：最后数组最后一位就是答案。
+     *
      * @param n
      * @return
      */
@@ -54,11 +59,10 @@ public class Offer14 {
     }
 
     /**
-     *
-     *
      * step 1：不超过3的直接计算
      * step 2：超过3的不断累乘3，然后number不断减去3，直到最后不超过4。
      * step 3：最后乘上剩余的数字。
+     *
      * @param n
      * @return
      */
